@@ -4,9 +4,9 @@ import java.util.*;
 
 /**
  * Created by NPOST on 2016-12-06.
- * 1. 배열 정렬
- * 2. 리스트 정렬
- * 3. apple 객체 정렬
+ * 1. 배열 정렬.
+ * 2. 리스트 정렬.
+ * 3. apple 객체 정렬.
  * 
  * Arrays.sort는 배열을 정렬하는데 쓴다.
  * - object[], object[]+Comparator, 배열 (크게 3가지)을 파라미터로 받아서 정렬한다.

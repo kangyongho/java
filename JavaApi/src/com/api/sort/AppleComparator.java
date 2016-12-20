@@ -114,7 +114,7 @@ public class AppleComparator {
 
         /* Object 타입 (레퍼런스) 리스트 정렬 */
         System.out.println("\n\n6. Object 타입 (레퍼런스) 리스트 정렬");
-        ArrayList<Apple> appleLists = new ArrayList<>();
+        List<Apple> appleLists = new ArrayList<>();
         appleLists.add(new Apple(25, "yellow"));
         appleLists.add(new Apple(15, "red"));
         appleLists.add(new Apple(35, "green"));
@@ -142,6 +142,17 @@ public class AppleComparator {
             System.out.printf("%d ", appleList.getWeight());
         }
 
+        System.out.println("\n\n6-2. List에서 sort를 바로 호출 java8 - String 정렬");
+        appleLists.sort(new ColorComparator());
+        for (Apple appleList : appleLists) {
+            System.out.printf("%s ", appleList.getColor());
+        }
+        System.out.println("\n\n6-2. List에서 sort를 바로 호출 java8 - String 내림차순 정렬");
+        appleLists.sort(new ColorComparatorDesc());
+        for (Apple appleList : appleLists) {
+            System.out.printf("%s ", appleList.getColor());
+        }
+
         /* 클래스 구현을 바꾸고 싶지 않을 때 Comparator를 구현해서 쓴다.*/
         /* 익명 클래스 사용 */
 //        Arrays.sort(apples, new Comparator<Apple>() {
@@ -152,6 +163,17 @@ public class AppleComparator {
 //                return color1.compareTo(color2);
 //            }
 //        });
+
+        System.out.println("\n\n6-3. List에서 sort를 바로 호출 java8 - 메서드 레퍼런스 정렬");
+        appleLists.sort(Comparator.comparing(Apple::getColor));
+        for (Apple appleList : appleLists) {
+            System.out.printf("%s ", appleList.getColor());
+        }
+        System.out.println("\n\n6-2. List에서 sort를 바로 호출 java8 - 메서드 레퍼런스 내림차순 정렬");
+        appleLists.sort(Comparator.comparing(Apple::getColor).reversed());
+        for (Apple appleList : appleLists) {
+            System.out.printf("%s ", appleList.getColor());
+        }
     }
 
     // 배열의 내림차순 정렬

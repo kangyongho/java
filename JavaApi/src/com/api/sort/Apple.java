@@ -5,8 +5,8 @@ package com.api.sort;
  * 객체의 정렬에 사용할 POJO
  */
 public class Apple {
-    int weight;
-    String color;
+    private final int weight;
+    private final String color;
 
     public Apple(int weight, String color) {
         this.weight = weight;
@@ -17,15 +17,7 @@ public class Apple {
         return weight;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
     public String getColor() {
         return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
     }
 }

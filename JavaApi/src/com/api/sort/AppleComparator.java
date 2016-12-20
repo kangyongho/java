@@ -20,6 +20,9 @@ import java.util.*;
  *
  * Comparator와 달리 객체를 정의할 때 Comparable 인터페이스를 구현하여 사용할 수도 있다.
  * link: http://www.programcreek.com/2011/12/examples-to-demonstrate-comparable-vs-comparator-in-java/
+ *
+ * List.sort에 메서드레퍼런스를 넘겨줘서 정렬할 수 있다.
+ * java 8 부터 추가
  */
 public class AppleComparator {
 

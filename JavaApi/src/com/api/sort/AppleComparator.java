@@ -1,6 +1,7 @@
 package com.api.sort;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 /**
  * Created by NPOST on 2016-12-06.
@@ -37,7 +38,7 @@ public class AppleComparator {
         //Arrays.sort(intArrarys, Collections.reverseOrder()); //intArray2는 Object가 아니라고 에러난다.
 
         System.out.println("\n\n1-2. 프리미티브 타입 배열 내림차순 정렬 (정수)");
-        // 배열의 내림차순 정렬은 직접 구현해서 써야한다.
+        // 배열의 내림차순 정렬은 직접 구현해서 써야한다. (단순 배열 뒤집기. 오름차순 정렬 배열을 파라미터로 전달)
         int[] descIntArrarys = sortDes(intArrarys);
         for (int array : descIntArrarys) {
             System.out.printf("%d ", array);
@@ -86,11 +87,9 @@ public class AppleComparator {
 
         /* 5. Object 타입 (레퍼런스 객체) 배열 정렬 */
         System.out.println("\n\n5. Object 타입 (레퍼런스 객체) 배열 정렬");
-        Apple[] apples = new Apple[3];
-        apples[0] = new Apple(25, "yellow");
-        apples[1] = new Apple(15, "red");
-        apples[2] = new Apple(35, "green");
+        Apple[] apples = new Apple[]{new Apple(25, "yellow"), new Apple(15, "red"), new Apple(35, "green")};
         //Arrays.sort(apples); //Cast 에러가 난다.
+        //Stream<Apple> stream = Arrays.stream(apples); //java 8 array as stream
 
         /* 내부 static 클래스 사용, 일반 클래스로 정의시 new AppleComparator.new ColorComparator 형태로 써야한다. */
         System.out.println("\n5-1. String 정렬");
@@ -151,7 +150,7 @@ public class AppleComparator {
             System.out.printf("%s ", appleList.getColor());
         }
         System.out.println("\n\n6-2. List에서 sort를 바로 호출 java8 - String 내림차순 정렬");
-        appleLists.sort(new ColorComparatorDesc());
+        appleLists.sort(new ColorComparatorDesc()); //new ColorComparatorDesc() 는 다음과 같다. new ColorComparator().reversed() // reversed()는 비교자 순서를 바꿔준다.
         for (Apple appleList : appleLists) {
             System.out.printf("%s ", appleList.getColor());
         }
@@ -167,15 +166,20 @@ public class AppleComparator {
 //            }
 //        });
 
-        System.out.println("\n\n6-3. List에서 sort를 바로 호출 java8 - 메서드 레퍼런스 정렬");
+        System.out.println("\n\n6-3. List에서 sort를 바로 호출 java8 - 메서드 레퍼런스 정렬.문자열");
         appleLists.sort(Comparator.comparing(Apple::getColor));
         for (Apple appleList : appleLists) {
             System.out.printf("%s ", appleList.getColor());
         }
-        System.out.println("\n\n6-2. List에서 sort를 바로 호출 java8 - 메서드 레퍼런스 내림차순 정렬");
+        System.out.println("\n\n6-2. List에서 sort를 바로 호출 java8 - 메서드 레퍼런스 내림차순 정렬.문자열");
         appleLists.sort(Comparator.comparing(Apple::getColor).reversed());
         for (Apple appleList : appleLists) {
             System.out.printf("%s ", appleList.getColor());
+        }
+        System.out.println("\n\n6-3. List에서 sort를 바로 호출 java8 - 메서드 레퍼런스 내림차순 정렬.숫자");
+        appleLists.sort(Comparator.comparing(Apple::getWeight).reversed());
+        for (Apple appleList : appleLists) {
+            System.out.printf("%d ", appleList.getWeight());
         }
     }
 
